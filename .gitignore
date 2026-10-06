@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+output/
+data/uber_data.csv
+.env
+*credentials*.json
