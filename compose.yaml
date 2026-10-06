@@ -1,6 +1,16 @@
 services:
+  kafka-init:
+    image: apache/kafka:3.9.1
+    user: "0:0"
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["mkdir -p /tmp/kraft-combined-logs && chown -R 1000:1000 /tmp/kraft-combined-logs"]
+    volumes:
+      - kafka-data:/tmp/kraft-combined-logs
   kafka:
     image: apache/kafka:3.9.1
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
     ports:
       - "127.0.0.1:9092:9092"
     environment:

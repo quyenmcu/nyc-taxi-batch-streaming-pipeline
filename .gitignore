@@ -1,6 +1,15 @@
 .venv/
+venv/
 __pycache__/
+*.py[cod]
+.pytest_cache/
 output/
-data/uber_data.csv
+*.db
+*.db-wal
+*.db-shm
+*.parquet
 .env
-*credentials*.json
+.env.*
+credentials*.json
+service-account*.json
+.DS_Store

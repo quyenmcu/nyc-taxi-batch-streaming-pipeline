@@ -13,4 +13,13 @@ https://github.com/trannhatnguyen2/NYC_Taxi_Data_Pipeline
 
 Inspiration: historical data replay and a distinct streaming path. This milestone does not copy its Debezium/Spark/MinIO stack.
 
-The referenced Darshil root directory did not include a LICENSE file in the listing reviewed. Upstream files are not redistributed in this archive; links and source hashes document provenance. Implementation files in this package were independently written. No original TLC dataset is bundled. The 120-row sample is synthetic.
+The referenced Darshil root directory did not include a LICENSE file in the listing reviewed. Upstream files are not redistributed in this archive; links and source hashes document provenance. Implementation files in this package were independently written. The author later uploaded green_tripdata_2026-08.parquet to this repository; the yellow input is not bundled. The 120-row sample is synthetic.
+
+
+
+## Current verified scope (6 October 2026)
+
+The local yellow/green Parquet run now includes batched Kafka replay, nullable payment
+values, Flex Fare code 0, cached date/type filters, and full reconciliation.
+See [current provenance](docs/provenance.md) and [measured results](docs/validation.md).
+Optional BigQuery and Mage adapters remain separate from the verified local path.

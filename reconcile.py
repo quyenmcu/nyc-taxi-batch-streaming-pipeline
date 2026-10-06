@@ -1,8 +1,12 @@
 import argparse
 import sqlite3
+from contextlib import closing
+from pathlib import Path
 
 def compare(left,right):
-    with sqlite3.connect(left) as a,sqlite3.connect(right) as b:
+    with closing(sqlite3.connect(Path(left).resolve().as_uri()+'?mode=ro',uri=True)) as a, closing(sqlite3.connect(Path(right).resolve().as_uri()+'?mode=ro',uri=True)) as b:
+        a.execute('BEGIN')
+        b.execute('BEGIN')
         trips='SELECT trip_id,pickup,dropoff,pickup_area,distance,total,payment_type FROM trips ORDER BY trip_id'
         windows='SELECT * FROM five_minute_summary ORDER BY window_start,pickup_area'
         for label,query in [('trips',trips),('windows',windows)]:
